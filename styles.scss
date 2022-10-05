@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap');
+
+$dark_blue: hsl(235, 46%, 20%);
+$blue: hsl(246, 80%, 60%);
+$very_dark_blue: hsl(226, 43%, 10%);
+$desaturated_blue: hsl(235, 45%, 61%);
+$pale_blue: hsl(236, 100%, 87%);
+$work: hsl(15, 100%, 70%);
+$play: hsl(195, 74%, 62%);
+$study: hsl(348, 100%, 68%);
+$exercise: hsl(145, 58%, 55%);
+$social: hsl(264, 64%, 52%);
+$self_care: hsl(43, 84%, 65%);
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animate($animation, $duration, $method, $times) {
+  animation: $animation $duration $method $times;
+}
+
+@include keyframes(slide-in-fwd-top) {
+  0% {
+    -webkit-transform: translateZ(-1400px) translateY(-800px);
+    transform: translateZ(-1400px) translateY(-800px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@include keyframes(swing-in-left-fwd) {
+  0% {
+    -webkit-transform: translateX(-800px) rotate(-540deg);
+    transform: translateX(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  background-color: $very_dark_blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: all 0.5s ease;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 80vw;
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+.profile {
+  .profile_details {
+    background-color: $blue;
+    width: 20rem;
+    padding: 2rem 2rem 6rem;
+    border-radius: 1rem;
+    position: relative;
+    bottom: -1rem;
+    @include animate(swing-in-left-fwd, 0.6s, ease-in-out, both);
+
+    img {
+      height: 10rem;
+      width: 10rem;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      margin-bottom: 2.5rem;
+    }
+  }
+  .details {
+    p {
+      color: #fff;
+    }
+    h1 {
+      color: #fff;
+      font-size: 3rem;
+      font-weight: 300;
+    }
+  }
+
+  .date_stamps {
+    padding: 3rem 2rem 2rem;
+    background-color: $dark_blue;
+    z-index: -100;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    p {
+      color: $desaturated_blue;
+      margin-bottom: 0.9rem;
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
+    p:hover {
+      transform: scale(1.05);
+      color: #fff;
+    }
+    p:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.date__structure {
+  gap: 2rem;
+  width: 85rem;
+  flex-wrap: wrap;
+  .card {
+    height: 18rem;
+    width: 17rem;
+    margin-top: 1rem;
+    transition: all 0.5s ease;
+    cursor: pointer;
+
+    .card_image {
+      height: 4rem;
+      justify-content: flex-end;
+      position: relative;
+      z-index: -5;
+      border-top-right-radius: 1rem;
+      border-top-left-radius: 1rem;
+
+      img {
+        z-index: -10;
+        position: relative;
+        top: 0.4rem;
+      }
+    }
+
+    .social {
+      background-color: $social;
+
+      img {
+        position: relative;
+        top: 0.8rem;
+      }
+    }
+
+    .play {
+      background-color: $play;
+    }
+
+    .work {
+      background-color: $work;
+
+      img {
+        position: relative;
+        top: 0.5rem;
+      }
+    }
+
+    .study {
+      background-color: $study;
+    }
+
+    .self_care {
+      background-color: $self_care;
+    }
+
+    .exercise {
+      background-color: $exercise;
+    }
+  }
+  .card:hover {
+    transform: rotateY(360deg);
+  }
+
+  .card_details {
+    position: relative;
+    background-color: $dark_blue;
+    padding: 3rem 1.5rem 1.8rem;
+    z-index: 3;
+    border-radius: 1rem;
+    top: -1rem;
+    .top {
+      margin-bottom: 2.5rem;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      p {
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+    .time {
+      h2 {
+        font-size: 3.8rem;
+        color: #fff;
+        font-weight: 300;
+        @include animate(
+          slide-in-fwd-top,
+          0.7s,
+          cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          both
+        );
+        transition: all 0.4s ease;
+      }
+
+      p {
+        color: $desaturated_blue;
+        margin-top: 1rem;
+        @include animate(
+          slide-in-fwd-top,
+          0.7s,
+          cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          both
+        );
+        transition: all 0.4s ease;
+      }
+    }
+  }
+}
+
+.attribution {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #fff;
+
+  a {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+@media (max-width: 850px) {
+  .container,
+  .date__structure {
+    max-width: 98vw;
+    flex-direction: column;
+  }
+
+  .profile {
+    .profile_details {
+      width: 22rem;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      img {
+        height: 5rem;
+        width: 5rem;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        margin-bottom: 0;
+      }
+    }
+    .details {
+      p {
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+      h1 {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 300;
+      }
+    }
+
+    .date_stamps {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      // gap: 1.5rem;
+      padding: 2.5rem 1rem 1rem;
+
+      p {
+        color: $desaturated_blue;
+        margin-bottom: 0.9rem;
+        transition: all 0.5s ease;
+        cursor: pointer;
+      }
+      p:hover {
+        transform: scale(1.05);
+        color: #fff;
+      }
+      p:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .date__structure {
+    .card {
+      height: 12rem;
+      width: 22rem;
+      margin-top: 1rem;
+    }
+
+    .card_details {
+      padding: 1rem;
+      .top {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
